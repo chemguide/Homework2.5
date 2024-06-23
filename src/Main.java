@@ -13,20 +13,21 @@ public class Main {
     }
 
     public static void checkAuthentication(String login, String password, String confirmPassword) {
-        if (checkSymbol(login) || login.length() > 20) {
+        if (checkString(login) || login.length() > 20) {
             throw new WrongLoginException();
         }
-        if (checkSymbol(password) || !password.equals(confirmPassword)) {
+        if (checkString(password) || !password.equals(confirmPassword)) {
             throw new WrongPasswordException();
         }
     }
 
-    public static boolean checkSymbol(String string) {
+    public static boolean checkString(String string) {
         String allowedSymbols = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789_";
-        Boolean correctSymbol = false;
+        boolean correctSymbol = false;
         for (int i = 0; i < string.length(); i++) {
             if (allowedSymbols.indexOf(string.charAt(i)) == -1) {
                 correctSymbol = true;
+                return correctSymbol;
             }
         }
         return correctSymbol;
